@@ -1,11 +1,13 @@
-name: Simple CI
-
+name: Run all JS files
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Run my script
-      run: node Sample.js
+    - name: Run all JS files
+      run: |
+        for file in *.js; do
+          echo "Running $file..."
+          node "$file"
+        done
